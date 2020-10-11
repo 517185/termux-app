@@ -51,4 +51,6 @@
     <string name="file_received_title">Save file in ~/downloads/</string>
     <string name="file_received_edit_button">Edit</string>
     <string name="file_received_open_folder_button">Open folder</string>
+    <string name="doubletap_popup_keyboard">DoubleTap popup keyboard</string>
+    <string name="popup_keyboard_at_start">Popup keyboard at start</string>
 </resources>

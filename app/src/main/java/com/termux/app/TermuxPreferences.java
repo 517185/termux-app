@@ -62,9 +62,13 @@ final class TermuxPreferences {
     private static final String FONTSIZE_KEY = "fontsize";
     private static final String CURRENT_SESSION_KEY = "current_session";
     private static final String SCREEN_ALWAYS_ON_KEY = "screen_always_on";
+    private static final String DOUBLETAP_POPUP_KEYBOARD = "double_tap_popup_keyboard";
+    private static final String POPUP_KEYBOARD_AT_START = "popup_keyboard_at_start";
 
     private boolean mUseDarkUI;
     private boolean mScreenAlwaysOn;
+    private boolean mDoubleTapPopupKeyboard;
+    private boolean mPopupkeyboardAtStart;
     private int mFontSize;
 
     @AsciiBellBehaviour
@@ -97,6 +101,8 @@ final class TermuxPreferences {
 
         mShowExtraKeys = prefs.getBoolean(SHOW_EXTRA_KEYS_KEY, true);
         mScreenAlwaysOn = prefs.getBoolean(SCREEN_ALWAYS_ON_KEY, false);
+        mDoubleTapPopupKeyboard = prefs.getBoolean(DOUBLETAP_POPUP_KEYBOARD,false);
+        mPopupkeyboardAtStart = prefs.getBoolean(POPUP_KEYBOARD_AT_START, true);
 
         // http://www.google.com/design/spec/style/typography.html#typography-line-height
         int defaultFontSize = Math.round(12 * dipInPixels);
@@ -133,6 +139,14 @@ final class TermuxPreferences {
         return mScreenAlwaysOn;
     }
 
+    boolean ismDoubleTapPopupKeyboard(){
+        return mDoubleTapPopupKeyboard;
+    }
+
+    boolean ismPopupkeyboardAtStart() {
+        return mPopupkeyboardAtStart;
+    }
+
     boolean isUsingBlackUI() {
         return mUseDarkUI;
     }
@@ -140,6 +154,16 @@ final class TermuxPreferences {
     void setScreenAlwaysOn(Context context, boolean newValue) {
         mScreenAlwaysOn = newValue;
         PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(SCREEN_ALWAYS_ON_KEY, newValue).apply();
+    }
+
+    void setDoubletapPopupKeyboard(Context context, boolean newValue){
+        mDoubleTapPopupKeyboard = newValue;
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(DOUBLETAP_POPUP_KEYBOARD,newValue).apply();
+    }
+
+    void setPopupkeyboardAtStart(Context context, boolean newValue) {
+        this.mPopupkeyboardAtStart = newValue;
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(POPUP_KEYBOARD_AT_START,newValue).apply();
     }
 
     static void storeCurrentSession(Context context, TerminalSession session) {

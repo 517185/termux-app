@@ -93,6 +93,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
     private static final int CONTEXTMENU_STYLING_ID = 6;
     private static final int CONTEXTMENU_HELP_ID = 8;
     private static final int CONTEXTMENU_TOGGLE_KEEP_SCREEN_ON = 9;
+    private static final int CONTEXTMENU_DOUBLETAP_POPUP_KEYBOARD = 11;
+    private static final int CONTEXTMENU_POPUP_KEYBOARD_AT_START = 12;
     private static final int CONTEXTMENU_AUTOFILL_ID = 10;
 
     private static final int MAX_SESSIONS = 8;
@@ -224,7 +226,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         mTerminalView.setTextSize(mSettings.getFontSize());
         mTerminalView.setKeepScreenOn(mSettings.isScreenAlwaysOn());
-        mTerminalView.requestFocus();
+        if(mSettings.ismPopupkeyboardAtStart()){
+            mTerminalView.requestFocus();
+        }
 
         final ViewPager viewPager = findViewById(R.id.viewpager);
         if (mSettings.mShowExtraKeys) viewPager.setVisibility(View.VISIBLE);
@@ -667,6 +671,8 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         menu.add(Menu.NONE, CONTEXTMENU_KILL_PROCESS_ID, Menu.NONE, getResources().getString(R.string.kill_process, getCurrentTermSession().getPid())).setEnabled(currentSession.isRunning());
         menu.add(Menu.NONE, CONTEXTMENU_STYLING_ID, Menu.NONE, R.string.style_terminal);
         menu.add(Menu.NONE, CONTEXTMENU_TOGGLE_KEEP_SCREEN_ON, Menu.NONE, R.string.toggle_keep_screen_on).setCheckable(true).setChecked(mSettings.isScreenAlwaysOn());
+        menu.add(Menu.NONE, CONTEXTMENU_DOUBLETAP_POPUP_KEYBOARD, Menu.NONE, R.string.doubletap_popup_keyboard).setCheckable(true).setChecked(mSettings.ismDoubleTapPopupKeyboard());
+        menu.add(Menu.NONE, CONTEXTMENU_POPUP_KEYBOARD_AT_START, Menu.NONE, R.string.popup_keyboard_at_start    ).setCheckable(true).setChecked(mSettings.ismPopupkeyboardAtStart());
         menu.add(Menu.NONE, CONTEXTMENU_HELP_ID, Menu.NONE, R.string.help);
     }
 
@@ -875,6 +881,22 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
                 } else {
                     mTerminalView.setKeepScreenOn(true);
                     mSettings.setScreenAlwaysOn(this, true);
+                }
+                return true;
+            }
+            case CONTEXTMENU_DOUBLETAP_POPUP_KEYBOARD: {
+                if(mSettings.ismDoubleTapPopupKeyboard()){
+                    mSettings.setDoubletapPopupKeyboard(this,false);
+                } else {
+                    mSettings.setDoubletapPopupKeyboard(this,true);
+                }
+                return true;
+            }
+            case CONTEXTMENU_POPUP_KEYBOARD_AT_START: {
+                if(mSettings.ismPopupkeyboardAtStart()){
+                    mSettings.setPopupkeyboardAtStart(this,false);
+                } else {
+                    mSettings.setPopupkeyboardAtStart(this,true);
                 }
                 return true;
             }

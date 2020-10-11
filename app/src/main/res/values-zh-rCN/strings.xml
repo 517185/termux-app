@@ -42,4 +42,6 @@
     <string name="run_command_permission_label">在Termux 环境中运行命令</string>
     <string name="shared_user_label">Termux 用户</string>
     <string name="run_command_permission_description">在 Termux 环境中运行任意命令</string>
+    <string name="doubletap_popup_keyboard">双击弹出键盘</string>
+    <string name="popup_keyboard_at_start">启动时弹出键盘</string>
 </resources>

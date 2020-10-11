@@ -40,8 +40,10 @@ public final class TermuxViewClient implements TerminalViewClient {
 
     @Override
     public void onSingleTapUp(MotionEvent e) {
-        InputMethodManager mgr = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        mgr.showSoftInput(mActivity.mTerminalView, InputMethodManager.SHOW_IMPLICIT);
+        if(!mActivity.mSettings.ismDoubleTapPopupKeyboard()){
+            InputMethodManager mgr = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            mgr.showSoftInput(mActivity.mTerminalView, InputMethodManager.SHOW_IMPLICIT);
+        }
     }
 
     @Override
@@ -258,6 +260,15 @@ public final class TermuxViewClient implements TerminalViewClient {
 
     @Override
     public boolean onLongPress(MotionEvent event) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent event) {
+        if(mActivity.mSettings.ismDoubleTapPopupKeyboard()){
+            ((InputMethodManager)(mActivity.getSystemService(Context.INPUT_METHOD_SERVICE))).toggleSoftInput(0,0);
+            return true;
+        }
         return false;
     }
 
