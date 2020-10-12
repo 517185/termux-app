@@ -163,6 +163,8 @@ public class ExtraKeysInfos {
         putAll(classicArrowsDisplay);
         putAll(wellKnownCharactersDisplay);
         putAll(nicerLookingDisplay);
+        putAll(lessKnownCharactersDisplay);
+        putAll(arrowTriangleVariationDisplay);
         // all other characters are displayed as themselves
     }};
 
