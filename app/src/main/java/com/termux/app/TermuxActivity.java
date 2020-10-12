@@ -226,8 +226,9 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         mTerminalView.setTextSize(mSettings.getFontSize());
         mTerminalView.setKeepScreenOn(mSettings.isScreenAlwaysOn());
-        if(mSettings.ismPopupkeyboardAtStart()){
-            mTerminalView.requestFocus();
+        mTerminalView.requestFocus();
+        if(!mSettings.ismPopupkeyboardAtStart()){
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         }
 
         final ViewPager viewPager = findViewById(R.id.viewpager);
