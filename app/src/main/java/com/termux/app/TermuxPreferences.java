@@ -220,7 +220,7 @@ final class TermuxPreferences {
                 mUseDarkUI = nightMode == Configuration.UI_MODE_NIGHT_YES;
         }
 
-        String defaultExtraKeys = "[[{key: '~',popup: '`'}, {key: '\\/', popup: '?'}, {key: ':', popup: ';'}, {key: '!', popup: {macro: 'ESC :!', display: '!cmd'}}, {key: '-', popup: '_'}, {key: '=', popup: '+'}, {key: 'UP', popup: 'PGUP'}, {key: 'KEYBOARD', popup: {macro: 'ESC F5 ENTER', display: 'RUN'}}],[{key: 'ESC', popup: {macro: 'ESC :conf SPACE qa ENTER', display: 'exit?'}}, {key: 'TAB', popup: {macro: 'ESC :w ENTER', display: 'save'}}, {key: 'CTRL', popup: {macro: 'ESC :q ENTER', display: 'quit'}}, {key: 'ALT', popup: '*'}, {key: 'BACKSLASH', popup: '|'}, {key: 'LEFT', popup: 'HOME'}, {key: 'DOWN', popup: 'PGDN'}, {key: 'RIGHT', popup: 'END'}]]";
+        String defaultExtraKeys = "[[{key: '~',popup: '`'}, {key: '\\/', popup: '?'}, {key: ':', popup: ';'}, {key: '!', popup: {macro: 'ESC :!', display: '!cmd'}}, {key: '-', popup: '_'}, {key: '=', popup: '+'}, {key: 'UP', popup: 'PGUP'}, {key: 'KEYBOARD', popup: {macro: 'exit ENTER', display: 'exit'}}],[{key: 'ESC', popup: {macro: 'ESC :q ENTER', display: 'quit'}}, {key: 'TAB', popup: {macro: 'ESC :w ENTER', display: 'save'}}, {key: 'CTRL', popup: {macro: 'ESC F5 ENTER', display: 'RUN'}}, {key: 'ALT', popup: '*'}, {key: 'BACKSLASH', popup: '|'}, {key: 'LEFT', popup: 'HOME'}, {key: 'DOWN', popup: 'PGDN'}, {key: 'RIGHT', popup: 'END'}]]";
 
         try {
             String extrakeyProp = props.getProperty("extra-keys", defaultExtraKeys);
